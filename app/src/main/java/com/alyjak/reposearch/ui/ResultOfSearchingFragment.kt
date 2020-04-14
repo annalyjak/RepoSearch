@@ -37,6 +37,10 @@ class ResultOfSearchingFragment : Fragment() {
 
         binding.viewModel = viewModel
 
+        binding.buttonSearch.setOnClickListener {
+            viewModel.onButtonSearchClick(binding.textInputLayout.editText?.text)
+        }
+
         return binding.root
     }
 

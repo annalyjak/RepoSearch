@@ -59,4 +59,5 @@ dependencies {
 
     // ViewModel and LiveData (arch components)
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
+    implementation 'com.google.android.material:material:1.1.0'
 }

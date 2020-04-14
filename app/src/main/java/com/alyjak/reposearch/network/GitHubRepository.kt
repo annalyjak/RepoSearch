@@ -15,4 +15,18 @@ class GitHubRepository {
                 .await())
         }
     }
+
+    suspend fun getSearchingResult(query: String) {
+        withContext(Dispatchers.IO) {
+            results.postValue(Network.gitHubService
+                .getRepositories(query)
+                .await())
+        }
+    }
+
+    suspend fun clearResult() {
+        withContext(Dispatchers.Main) {
+            results.value = null
+        }
+    }
 }

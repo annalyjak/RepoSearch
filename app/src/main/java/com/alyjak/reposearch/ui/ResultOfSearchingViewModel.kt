@@ -1,5 +1,6 @@
 package com.alyjak.reposearch.ui
 
+import android.text.Editable
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.alyjak.reposearch.network.GitHubRepository
@@ -33,6 +34,15 @@ class ResultOfSearchingViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun onButtonSearchClick(text: Editable?) {
+        viewModelScope.launch {
+            if (text != null) {
+                gitHubRepository.clearResult()
+                gitHubRepository.getSearchingResult(text.toString())
+            }
+        }
     }
 
 }
