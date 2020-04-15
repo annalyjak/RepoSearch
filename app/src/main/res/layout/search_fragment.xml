@@ -110,6 +110,8 @@
 
                     <Spinner
                             android:id="@+id/strategySpinner"
+                            android:entries="@{viewModel.strategyEntries}"
+                            android:selectedItemPosition="@={viewModel.selectedStrategy}"
                             android:layout_weight="5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
@@ -135,6 +137,8 @@
 
                     <Spinner
                             android:id="@+id/orderSpinner"
+                            android:entries="@{viewModel.orderEntries}"
+                            android:selectedItemPosition="@={viewModel.selectedOrder}"
                             android:layout_weight="5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">

@@ -48,7 +48,7 @@ class ResultOfSearchingViewModel : ViewModel() {
         viewModelScope.launch {
             _showProgressBar.value = true
             gitHubRepository.clearResult()
-            gitHubRepository.getSearchingResult(event.query)
+            gitHubRepository.getSearchingResult(event.query, event.sortingStrategy, event.order)
             _showProgressBar.value = false
         }
     }

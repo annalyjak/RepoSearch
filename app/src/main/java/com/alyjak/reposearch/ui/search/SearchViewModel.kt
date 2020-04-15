@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alyjak.reposearch.events.MakeSearchEvent
+import com.alyjak.reposearch.network.enums.Order
+import com.alyjak.reposearch.network.enums.SortingStrategy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -25,6 +27,20 @@ class SearchViewModel : ViewModel() {
     val showAdvancedOptions: LiveData<Boolean>
         get() = _showAdvancedOptions
 
+    val strategyEntries = arrayListOf(
+        SortingStrategy.STARS,
+        SortingStrategy.FORKS,
+        SortingStrategy.HELP_WANTED_ISSUES,
+        SortingStrategy.UPDATED
+    )
+    var selectedStrategy: Int = 0
+
+    val orderEntries = arrayListOf(
+        Order.DESC,
+        Order.ASC
+    )
+    var selectedOrder: Int = 0
+
 
     init {
         _showAdvancedOptions.value = false
@@ -42,7 +58,15 @@ class SearchViewModel : ViewModel() {
     fun onButtonSearchClick(text: Editable?) {
         val query = text.toString()
         if (query.isNotEmpty()) {
-            EventBus.getDefault().post(MakeSearchEvent(query))
+            if (_showAdvancedOptions.value != null && _showAdvancedOptions.value!!) {
+                EventBus.getDefault().post(
+                    MakeSearchEvent(query, strategyEntries[selectedStrategy], orderEntries[selectedOrder])
+                )
+            } else {
+                EventBus.getDefault().post(
+                    MakeSearchEvent(query)
+                )
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 package com.alyjak.reposearch.util
 
 import android.view.View
+import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 
 @BindingAdapter("goneIfNotNull")
