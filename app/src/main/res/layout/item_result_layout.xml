@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="property"
+                type="com.alyjak.reposearch.network.Model.RepositoryResultInfo" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+            app:cardUseCompatPadding="true"
+            app:cardElevation="1dp"
+            app:cardCornerRadius="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/repo_title"
+                    android:text="@{property.fullName}"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/repo_description"
+                    android:text="@{property.description}"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:src="@drawable/ic_star_black_24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/stars"/>
+
+                <TextView
+                        android:id="@+id/repo_stars"
+                        android:text="@{property.stargazersCount.toString()}"
+                        android:gravity="center"
+                        android:layout_marginStart="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <ImageView
+                        android:src="@drawable/ic_language_black_24dp"
+                        android:layout_marginStart="8dp"
+                        showIfNotNull="@{property.language}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/stars"/>
+
+                <TextView
+                        android:id="@+id/repo_language"
+                        android:text="@{property.language}"
+                        showIfNotNull="@{property.language}"
+                        android:gravity="center"
+                        android:layout_marginStart="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <ImageView
+                        android:src="@drawable/ic_code_branch_solid"
+                        android:layout_marginStart="8dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:contentDescription="@string/fork"/>
+
+                <TextView
+                        android:id="@+id/repo_forks"
+                        android:text="@{property.forksCount.toString()}"
+                        android:gravity="center"
+                        android:layout_marginStart="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:id="@+id/repo_license"
+                        showIfNotNull="@{property.license}"
+                        android:text="@{property.license.name}"
+                        android:gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <!--<ImageView-->
+            <!--android:id="@+id/repo_image"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="120dp"-->
+            <!--android:scaleType="centerCrop"-->
+            <!--android:adjustViewBounds="true"-->
+            <!--android:padding="2dp"-->
+            <!--tools:src="@tools:sample/backgrounds/scenic"/>-->
+
+            <!--app:imageUrl="@{property.src}"-->
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

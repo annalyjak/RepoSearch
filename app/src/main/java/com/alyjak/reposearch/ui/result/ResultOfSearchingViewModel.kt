@@ -1,5 +1,7 @@
 package com.alyjak.reposearch.ui.result
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.alyjak.reposearch.events.MakeSearchEvent
@@ -22,10 +24,16 @@ class ResultOfSearchingViewModel : ViewModel() {
         resultOfSearching.value?.totalCount.toString()
     }
 
+    val results = Transformations.map(resultOfSearching) {
+        resultOfSearching.value?.items
+    }
+
+    private val _showProgressBar = MutableLiveData<Boolean>()
+    val showProgressBar: LiveData<Boolean>
+        get() = _showProgressBar
+
     init {
-        viewModelScope.launch {
-            gitHubRepository.getSearchingResult()
-        }
+        _showProgressBar.value = false
     }
 
     /**
@@ -38,8 +46,10 @@ class ResultOfSearchingViewModel : ViewModel() {
 
     fun searchResult(event: MakeSearchEvent) {
         viewModelScope.launch {
+            _showProgressBar.value = true
             gitHubRepository.clearResult()
             gitHubRepository.getSearchingResult(event.query)
+            _showProgressBar.value = false
         }
     }
 

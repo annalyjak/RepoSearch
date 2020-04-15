@@ -6,4 +6,7 @@
     <string name="order">Order:</string>
     <string name="search">Search</string>
     <string name="expand">Expand</string>
+    <string name="stars">stars</string>
+    <string name="watchers">watchers</string>
+    <string name="fork">forks</string>
 </resources>

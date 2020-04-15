@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.alyjak.reposearch.R
 import com.alyjak.reposearch.databinding.ResultOfSearchingFragmentBinding
 import com.alyjak.reposearch.events.MakeSearchEvent
@@ -26,6 +27,8 @@ class ResultOfSearchingFragment : Fragment() {
         ViewModelProvider(this).get(ResultOfSearchingViewModel::class.java)
     }
 
+    lateinit var adapter: RepositoryInfoAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +42,9 @@ class ResultOfSearchingFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.viewModel = viewModel
+
+        adapter = RepositoryInfoAdapter()
+        binding.resultsRecycleView.adapter = adapter
 
         return binding.root
     }
