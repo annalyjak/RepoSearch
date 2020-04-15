@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable name="viewModel"
+                  type="com.alyjak.reposearch.ui.search.SearchViewModel"/>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.search.SearchFragment">
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/basicSearchCardView"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginBottom="8dp">
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    android:layout_margin="4dp"
+                    android:padding="4dp"
+                    app:boxBackgroundColor="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search_repository"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+                app:layout_constraintTop_toBottomOf="@+id/basicSearchCardView"
+                app:cardElevation="10dp"
+                app:cardCornerRadius="10dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/advanceSearchCardView"
+                android:onClick="@{() -> viewModel.expandMoreOrLess()}"
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginBottom="8dp">
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_margin="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:textSize="16sp"
+                            android:textColor="@color/colorAccent"
+                            android:padding="4dp"
+                            android:text="@string/advanced_searching_options"
+                            android:layout_weight="5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewAdvanceTitle"/>
+
+                    <ImageView
+                            android:src="@{viewModel.showAdvancedOptions ? @drawable/ic_expand_less_black_24dp :@drawable/ic_expand_more_black_24dp}"
+                            tools:src="@drawable/ic_expand_less_black_24dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/expand"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:visibility="@{viewModel.expandIcon}"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:text="@string/strategy"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                    <Spinner
+                            android:id="@+id/strategySpinner"
+                            android:layout_weight="5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                    </Spinner>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:visibility="@{viewModel.expandIcon}"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <TextView
+                            android:text="@string/order"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                    <Spinner
+                            android:id="@+id/orderSpinner"
+                            android:layout_weight="5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content">
+                    </Spinner>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSearchRepository"
+                app:cornerRadius="10dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                android:text="@string/search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/advanceSearchCardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_bias="0.0"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

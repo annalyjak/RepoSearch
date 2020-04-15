@@ -3,6 +3,8 @@ package com.alyjak.reposearch.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.alyjak.reposearch.R
+import com.alyjak.reposearch.ui.result.ResultOfSearchingFragment
+import com.alyjak.reposearch.ui.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,7 +14,8 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.main_container, ResultOfSearchingFragment.newInstance())
+            .replace(R.id.searching_container, SearchFragment.newInstance())
+            .replace(R.id.result_container, ResultOfSearchingFragment.newInstance())
             .commit()
     }
 

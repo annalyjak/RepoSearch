@@ -1,8 +1,8 @@
-package com.alyjak.reposearch.ui
+package com.alyjak.reposearch.ui.result
 
-import android.text.Editable
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.alyjak.reposearch.events.MakeSearchEvent
 import com.alyjak.reposearch.network.GitHubRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,12 +36,10 @@ class ResultOfSearchingViewModel : ViewModel() {
         viewModelJob.cancel()
     }
 
-    fun onButtonSearchClick(text: Editable?) {
+    fun searchResult(event: MakeSearchEvent) {
         viewModelScope.launch {
-            if (text != null) {
-                gitHubRepository.clearResult()
-                gitHubRepository.getSearchingResult(text.toString())
-            }
+            gitHubRepository.clearResult()
+            gitHubRepository.getSearchingResult(event.query)
         }
     }
 

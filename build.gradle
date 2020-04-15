@@ -10,6 +10,8 @@ buildscript {
         version_moshi = "1.8.0"
         version_lifecycle_extensions = "2.2.0"
         version_timber = "4.7.1"
+        version_material = "1.1.0"
+        version_event_bus = "3.2.0"
     }
     repositories {
         google()
