@@ -41,6 +41,10 @@ class SearchViewModel : ViewModel() {
     )
     var selectedOrder: Int = 0
 
+    val _showError = MutableLiveData<Boolean>()
+    val showError: LiveData<Boolean>
+        get() = _showError
+
 
     init {
         _showAdvancedOptions.value = false
@@ -58,6 +62,7 @@ class SearchViewModel : ViewModel() {
     fun onButtonSearchClick(text: Editable?) {
         val query = text.toString()
         if (query.isNotEmpty()) {
+            removeInputTextError()
             if (_showAdvancedOptions.value != null && _showAdvancedOptions.value!!) {
                 EventBus.getDefault().post(
                     MakeSearchEvent(query, strategyEntries[selectedStrategy], orderEntries[selectedOrder])
@@ -67,6 +72,22 @@ class SearchViewModel : ViewModel() {
                     MakeSearchEvent(query)
                 )
             }
+        } else {
+            setInputTextError()
+        }
+    }
+
+    private fun setInputTextError() {
+        _showError.value = true
+    }
+
+    private fun removeInputTextError() {
+        _showError.value = false
+    }
+
+    fun onTextChange(text: CharSequence) {
+        if (_showError.value != null && _showError.value!! && text.isNotEmpty()) {
+            removeInputTextError()
         }
     }
 

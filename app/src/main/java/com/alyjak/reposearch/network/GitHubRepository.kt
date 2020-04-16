@@ -16,7 +16,7 @@ class GitHubRepository {
         try {
             withContext(Dispatchers.IO) {
                 results.postValue(Network.gitHubService
-                    .getRepositories(q = query, sort = sortingStrategy?.sortType, order = order?.order)
+                    .getRepositoriesAsync(q = query, sort = sortingStrategy?.sortType, order = order?.order)
                     .await())
             }
         } catch (e: Exception) {

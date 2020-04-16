@@ -18,5 +18,5 @@ object Network {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    val gitHubService = retrofit.create(GitHubService::class.java)
+    val gitHubService: GitHubService = retrofit.create(GitHubService::class.java)
 }

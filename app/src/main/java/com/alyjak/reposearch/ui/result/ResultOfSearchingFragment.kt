@@ -25,7 +25,7 @@ class ResultOfSearchingFragment : Fragment() {
         ViewModelProvider(this).get(ResultOfSearchingViewModel::class.java)
     }
 
-    lateinit var adapter: RepositoryInfoAdapter
+    private lateinit var adapter: RepositoryInfoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

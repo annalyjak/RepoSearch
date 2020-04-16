@@ -14,6 +14,7 @@
             tools:context=".ui.search.SearchFragment">
 
         <com.google.android.material.textfield.TextInputLayout
+                app:errorText="@{viewModel.showError}"
                 android:id="@+id/textInputLayout"
                 app:startIconDrawable="@drawable/ic_search_black_24dp"
                 app:startIconContentDescription="@string/search"
@@ -33,6 +34,7 @@
                 android:layout_marginBottom="8dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.onTextChange(text)}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/search_repository"/>

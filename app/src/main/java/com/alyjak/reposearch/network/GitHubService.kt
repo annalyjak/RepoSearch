@@ -9,7 +9,7 @@ import retrofit2.http.Query
 interface GitHubService {
 
     @GET("repositories")
-    fun getRepositories(
+    fun getRepositoriesAsync(
         @Query("q") q: String,
         @Query("sort") sort: String? = SortingStrategy.STARS.sortType,
         @Query("order") order: String? = Order.DESC.order
