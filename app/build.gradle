@@ -85,4 +85,9 @@ dependencies {
     // Glide
     implementation "com.github.bumptech.glide:glide:$version_glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$version_glide"
+
+    // Koin
+    implementation "org.koin:koin-android:$version_koin"
+    implementation "org.koin:koin-androidx-viewmodel:$version_koin"
+    implementation "org.koin:koin-androidx-scope:$version_koin"
 }
