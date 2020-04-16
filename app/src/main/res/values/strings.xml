@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">RepoSearch</string>
+    <string name="search_repository">Search repository</string>
+    <string name="advanced_searching_options">Advanced searching options</string>
+    <string name="strategy">Strategy:</string>
+    <string name="order">Order:</string>
+    <string name="search">Search</string>
+    <string name="expand">Expand</string>
+    <string name="stars">stars</string>
+    <string name="watchers">watchers</string>
+    <string name="fork">forks</string>
+    <string name="total_count_of_results">Total count of results:</string>
+    <string name="network_error">Network error</string>
 </resources>
