@@ -13,44 +13,38 @@
             android:layout_height="wrap_content"
             tools:context=".ui.search.SearchFragment">
 
-        <androidx.cardview.widget.CardView
-                android:id="@+id/basicSearchCardView"
-                app:cardElevation="4dp"
-                app:cardCornerRadius="10dp"
-                android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout"
+                app:startIconDrawable="@drawable/ic_search_black_24dp"
+                app:startIconContentDescription="@string/search"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginEnd="9dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 android:layout_marginBottom="8dp">
-            <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInputLayout"
-                    android:layout_margin="4dp"
-                    android:padding="4dp"
-                    app:boxBackgroundColor="@color/colorWhite"
+
+            <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/search_repository"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </androidx.cardview.widget.CardView>
+                    android:layout_height="wrap_content"
+                    android:hint="@string/search_repository"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.cardview.widget.CardView
-                app:layout_constraintTop_toBottomOf="@+id/basicSearchCardView"
-                app:cardElevation="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+                app:cardElevation="1dp"
                 app:cardCornerRadius="10dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
@@ -59,10 +53,13 @@
                 android:id="@+id/advanceSearchCardView"
                 android:onClick="@{() -> viewModel.expandMoreOrLess()}"
                 app:layout_constraintVertical_bias="0.0"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="4dp">
             <LinearLayout
                     android:orientation="vertical"
-                    android:layout_margin="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -76,7 +73,7 @@
                             android:textColor="@color/colorAccent"
                             android:padding="4dp"
                             android:text="@string/advanced_searching_options"
-                            android:layout_weight="5"
+                            android:layout_weight="7"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/textViewAdvanceTitle"/>
@@ -84,9 +81,8 @@
                     <ImageView
                             android:src="@{viewModel.showAdvancedOptions ? @drawable/ic_expand_less_black_24dp :@drawable/ic_expand_more_black_24dp}"
                             tools:src="@drawable/ic_expand_less_black_24dp"
-                            android:layout_weight="1"
-                            android:layout_width="0dp"
-                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="end|center_vertical"
                             android:layout_height="wrap_content"
                             android:contentDescription="@string/expand"/>
 
@@ -96,7 +92,6 @@
                         android:visibility="@{viewModel.expandIcon}"
                         android:layout_marginTop="16dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
                         android:layout_marginBottom="8dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -112,7 +107,9 @@
                             android:id="@+id/strategySpinner"
                             android:entries="@{viewModel.strategyEntries}"
                             android:selectedItemPosition="@={viewModel.selectedStrategy}"
-                            android:layout_weight="5"
+                            android:layout_weight="3"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
                     </Spinner>
@@ -122,8 +119,7 @@
                 <LinearLayout
                         android:visibility="@{viewModel.expandIcon}"
                         android:layout_marginTop="8dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="9dp"
                         android:layout_marginBottom="16dp"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
@@ -139,7 +135,9 @@
                             android:id="@+id/orderSpinner"
                             android:entries="@{viewModel.orderEntries}"
                             android:selectedItemPosition="@={viewModel.selectedOrder}"
-                            android:layout_weight="5"
+                            android:layout_weight="3"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content">
                     </Spinner>
@@ -154,16 +152,17 @@
                 app:cornerRadius="10dp"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 android:text="@string/search"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="4dp"
                 app:layout_constraintTop_toBottomOf="@+id/advanceSearchCardView"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="9dp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginStart="9dp"
+                android:layout_marginBottom="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.0"/>
+                app:layout_constraintVertical_bias="0.0" android:layout_marginTop="4dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

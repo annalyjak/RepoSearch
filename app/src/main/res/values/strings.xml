@@ -9,4 +9,5 @@
     <string name="stars">stars</string>
     <string name="watchers">watchers</string>
     <string name="fork">forks</string>
+    <string name="total_count_of_results">Total count of results:</string>
 </resources>
