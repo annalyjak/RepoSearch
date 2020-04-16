@@ -13,6 +13,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        <ImageView
+                app:goneIfFalse="@{viewModel.internetConnection}"
+                android:src="@drawable/ic_signal_wifi_off_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:contentDescription="@string/network_error"/>
         <ProgressBar
                 android:id="@+id/loading_spinner"
                 android:layout_width="wrap_content"

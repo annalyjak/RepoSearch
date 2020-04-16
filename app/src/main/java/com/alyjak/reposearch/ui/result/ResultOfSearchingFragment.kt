@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import com.alyjak.reposearch.R
 import com.alyjak.reposearch.databinding.ResultOfSearchingFragmentBinding
+import com.alyjak.reposearch.events.InternetConnectionErrorEvent
 import com.alyjak.reposearch.events.MakeSearchEvent
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
+import timber.log.Timber
 
 class ResultOfSearchingFragment : Fragment() {
 
@@ -21,9 +22,6 @@ class ResultOfSearchingFragment : Fragment() {
     }
 
     private val viewModel: ResultOfSearchingViewModel by lazy {
-        val activity = requireNotNull(this.activity) {
-            "You can only access the viewModel after onActivityCreated()"
-        }
         ViewModelProvider(this).get(ResultOfSearchingViewModel::class.java)
     }
 
@@ -49,11 +47,6 @@ class ResultOfSearchingFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
-    }
-
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
@@ -67,6 +60,12 @@ class ResultOfSearchingFragment : Fragment() {
     @Subscribe
     fun onMakeSearchEvent(event: MakeSearchEvent) {
         viewModel.searchResult(event)
+    }
+
+    @Subscribe
+    fun onInternetConnectionErrorEvent(event: InternetConnectionErrorEvent) {
+        Timber.e("No internet connection!" + event.exception.printStackTrace())
+        viewModel.setInternetError()
     }
 
 }

@@ -32,8 +32,13 @@ class ResultOfSearchingViewModel : ViewModel() {
     val showProgressBar: LiveData<Boolean>
         get() = _showProgressBar
 
+    private val _internetConnection = MutableLiveData<Boolean>()
+    val internetConnection: LiveData<Boolean>
+        get() = _internetConnection
+
     init {
         _showProgressBar.value = false
+        _internetConnection.value = false
     }
 
     /**
@@ -45,12 +50,17 @@ class ResultOfSearchingViewModel : ViewModel() {
     }
 
     fun searchResult(event: MakeSearchEvent) {
+        _internetConnection.value = false
         viewModelScope.launch {
             _showProgressBar.value = true
             gitHubRepository.clearResult()
             gitHubRepository.getSearchingResult(event.query, event.sortingStrategy, event.order)
             _showProgressBar.value = false
         }
+    }
+
+    fun setInternetError() {
+        _internetConnection.value = true
     }
 
 }
