@@ -11,12 +11,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
-class ResultOfSearchingViewModel : ViewModel() {
+class ResultOfSearchingViewModel(private val gitHubRepository: GitHubRepository) : ViewModel() {
 
     private val viewModelJob = SupervisorJob()
     private val viewModelScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-
-    private val gitHubRepository = GitHubRepository()
 
     val resultOfSearching = gitHubRepository.results
 

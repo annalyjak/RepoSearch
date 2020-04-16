@@ -8,14 +8,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.greenrobot.eventbus.EventBus
 
-class GitHubRepository {
+class GitHubRepository(private val gitHubService: GitHubService) {
 
     var results: MutableLiveData<Model.SearchingResult> = MutableLiveData()
 
     suspend fun getSearchingResult(query: String, sortingStrategy: SortingStrategy?, order: Order?) {
         try {
             withContext(Dispatchers.IO) {
-                results.postValue(Network.gitHubService
+                results.postValue(gitHubService
                     .getRepositoriesAsync(q = query, sort = sortingStrategy?.sortType, order = order?.order)
                     .await())
             }

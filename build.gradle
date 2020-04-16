@@ -14,6 +14,7 @@ buildscript {
         version_event_bus = "3.2.0"
         version_glide = "4.11.0"
         version_kotlin_reflect = "1.3.61"
+        version_koin = "2.0.1"
     }
     repositories {
         google()
